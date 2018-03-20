@@ -131,17 +131,16 @@ while(true)
                    lsb = fread(s,1);
                    msb = fread(s,1);
                    time(end+1) = 1e-3*combine(lsb,msb);
-                   data = uint8(fread(s,4));
-                   data = typecast(data, 'single');
-                   response(end+1) = double(data);
+                   data = uintfread(s,4);
+                   response(end+1) = combine(lsb,msb);
                case 'n'    % (110) Data (no input active)
                    input(end+1) = 0;
                    lsb = fread(s,1);
                    msb = fread(s,1);
                    time(end+1) = 1e-3*combine(lsb,msb);                  
-                   data = uint8(fread(s,4));
-                   data = typecast(data, 'single');
-                   response(end+1) = double(data);
+                   lsb = fread(s,1);
+                   msb = fread(s,1);                   
+                   response(end+1) = combine(lsb,msb);
                case 27 % Stop byte
                    break;
            end
